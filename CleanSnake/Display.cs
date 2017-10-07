@@ -21,12 +21,22 @@ namespace CleanSnake {
                 Console.ForegroundColor = ConsoleColor.Yellow; 
                 Console.SetCursorPosition(bp.X, bp.Y);
                 Console.Write(bp.Icon);
-
             }
        
         }
 
         public void UpdateSnake (BodyPart nHead,BodyPart oldHead, BodyPart tail = null) { // old head changes ico repaint it
+
+            if (tail != null)
+            {
+                Console.Write(" ");
+            }
+
+            Console.ForegroundColor = ConsoleColor.Yellow; 
+            Console.SetCursorPosition(oldHead.X,oldHead.Y);
+            Console.Write(oldHead.Icon == BodyPartIcon.BODY);
+            Console.SetCursorPosition(nHead.X, nHead.Y);
+            Console.Write(nHead.Icon == BodyPartIcon.HEAD);
 
         }
 
