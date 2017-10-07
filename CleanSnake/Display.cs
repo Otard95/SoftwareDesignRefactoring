@@ -26,16 +26,7 @@ namespace CleanSnake {
 
         }
 
-        public bool IsOutside(Vector2D v)
-        {
-         
-            if (v.X < 0 || v.X > Width || v.Y < 0 || v.Y > Height)
-            {
-                return true; 
-            }
-
-            return false; 
-        }
+        public bool IsOutside (Vector2D v) => (v.X < 0 || v.X > Width || v.Y < 0 || v.Y > Height);
 
     }
 }
