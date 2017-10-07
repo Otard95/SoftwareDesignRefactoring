@@ -32,6 +32,7 @@ namespace CleanSnake {
 			foreach (Vector2D v in mask) {
 				if (this == v) {
 					isOutside = false;
+				  break;
 				}
 			}
 			return isOutside;
