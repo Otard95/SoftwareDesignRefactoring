@@ -22,13 +22,31 @@ namespace CleanSnake {
         /*
          * ## Methuds
          */
-        public Vector2D Add (Vector2D v1) {
-            X += v1.X;
-            Y += v1.Y;
+        public Vector2D Add (Vector2D v) {
+            X += v.X;
+            Y += v.Y;
             return this;
         }
 
         public static Vector2D Add (Vector2D v1, Vector2D v2) => new Vector2D(v1).Add(v2);
+
+        public Vector2D Multiply (Vector2D v) {
+            X *= v.X;
+            Y *= v.Y;
+            return this;
+        }
+
+        public Vector2D Multiply (int scale) {
+            X *= scale;
+            Y *= scale;
+            return this;
+        }
+
+        public static Vector2D Multiply (Vector2D v1, Vector2D v2) => new Vector2D(v1).Multiply(v2);
+
+        public static Vector2D Multiply (Vector2D v, int scale) {
+            return new Vector2D(v).Multiply(scale);
+        }
 
         public bool Equals (Vector2D v1) => X == v1.X && Y == v1.Y;
 
@@ -43,6 +61,10 @@ namespace CleanSnake {
         public static bool operator != (Vector2D v1, Vector2D v2) => !v1.Equals(v2);
 
         public static Vector2D operator + (Vector2D v1, Vector2D v2) => Vector2D.Add(v1, v2);
+
+        public static Vector2D operator * (Vector2D v1, Vector2D v2) => Vector2D.Multiply(v1, v2);
+
+        public static Vector2D operator * (Vector2D v, int scale) => Vector2D.Multiply(v, scale);
 
     }
 }
