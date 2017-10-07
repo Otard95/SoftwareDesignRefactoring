@@ -8,14 +8,8 @@ namespace CleanSnake {
     class Apple : Vector2D {
 
         public Apple (List<Vector2D> mask, int x = 0, int y = 0): base(x,y) { // use initilize the apples pos somewhere not on the snake
-          bool isOutside = true;
-        for (int i = 0; i < mask.Count; i++) {
-        if (this == mask[i])
-        {
-          isOutside = false;
-        }
-      }
-          if (isOutside)
+          
+          if (checkIsOutside(mask))
           {
             X = x;
             Y = y;
@@ -31,12 +25,26 @@ namespace CleanSnake {
           {
             x = rnd.Next(0, xMax);
             y = rnd.Next(0, yMax);
-            for (int i = 0; i < mask.count; i++)
+            if (checkIsOutside(mask))
             {
-              
+              X = x;
+              Y = y;
+              okPos = true;
             }
           }
     }
+
+      public bool checkIsOutside(List<Vector2D> mask)
+      {
+        bool isOutside = true;
+      foreach (Vector2D v in mask)
+      {
+        if (this == v) {
+          isOutside = false;
+        }
+      }
+        return isOutside;
+      }
 
     }
 }
