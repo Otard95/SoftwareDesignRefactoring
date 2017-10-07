@@ -22,7 +22,11 @@ namespace CleanSnake {
 
         }
 
-        public void PaintApple (Apple apple) {
+        public void PaintApple (Apple apple)
+        {
+            Console.ForegroundColor = ConsoleColor.Green; 
+            Console.SetCursorPosition(apple.X, apple.Y);
+            Console.Write("$");
 
         }
 
