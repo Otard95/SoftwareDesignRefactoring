@@ -8,12 +8,55 @@ using System.Threading;
 namespace CleanSnake {
     class InputHandler {
 
+        /*
+         * ## private fields
+         */
+
         private volatile ConsoleKey _lastKeyPress;
         private volatile bool _running;
+
+        /*
+         * ## Proporty
+         */
+        public Input Input {
+            get {
+                switch (_lastKeyPress) {
+                    case ConsoleKey.Escape:
+                        return new Input(InputType.OPPERATION, _lastKeyPress);
+
+                    case ConsoleKey.Spacebar:
+                        return new Input(InputType.OPPERATION, _lastKeyPress);
+
+                    case ConsoleKey.UpArrow:
+                        return new Input(InputType.MOVE, _lastKeyPress, new Vector2D(0, -1));
+
+                    case ConsoleKey.DownArrow:
+                        return new Input(InputType.MOVE, _lastKeyPress, new Vector2D(0, 1));
+
+                    case ConsoleKey.RightArrow:
+                        return new Input(InputType.MOVE, _lastKeyPress, new Vector2D(1, 0));
+
+                    case ConsoleKey.LeftArrow:
+                        return new Input(InputType.MOVE, _lastKeyPress, new Vector2D(-1, 0));
+
+                    default:
+                        return null;
+
+                } // END switch
+            } // END get;
+        }
+
+        /*
+         * ## Constructor
+         */
 
         public InputHandler () {
             _running = true;
         }
+
+        /*
+         * ## Run methud for the Thread
+         */
 
         public void Run () {
             while (_running) {
@@ -23,35 +66,11 @@ namespace CleanSnake {
             }
         }
 
-        public void Shutdown () {
-            _running = false;
-        }
+        /*
+         * ## Shutdown methud for graceful exit
+         */
 
-        public Input GetInput() {
-            switch (_lastKeyPress) {
-                case ConsoleKey.Escape:
-                    return new Input(InputType.OPPERATION, _lastKeyPress);
-
-                case ConsoleKey.Spacebar:
-                    return new Input(InputType.OPPERATION, _lastKeyPress);
-
-                case ConsoleKey.UpArrow:
-                    return new Input(InputType.MOVE, _lastKeyPress, new Vector2D(0, -1));
-
-                case ConsoleKey.DownArrow:
-                    return new Input(InputType.MOVE, _lastKeyPress, new Vector2D(0,  1));
-
-                case ConsoleKey.RightArrow:
-                    return new Input(InputType.MOVE, _lastKeyPress, new Vector2D(1,  0));
-
-                case ConsoleKey.LeftArrow:
-                    return new Input(InputType.MOVE, _lastKeyPress, new Vector2D(-1, 0));
-
-                default:
-                    return null;
-
-            } // END switch
-        } // END GetInput()
+        public void Shutdown () => _running = false;
 
     }
 }
