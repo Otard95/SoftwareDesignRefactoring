@@ -8,7 +8,7 @@ using System.Threading;
 namespace CleanSnake {
     class InputHandler {
 
-        private ConsoleKeyInfo _lastKeyPress;
+        private volatile ConsoleKey _lastKeyPress;
         private volatile bool _running;
 
         public InputHandler () {
@@ -18,7 +18,7 @@ namespace CleanSnake {
         public void Run () {
             while (_running) {
 
-                if (Console.KeyAvailable) _lastKeyPress = Console.ReadKey();
+                if (Console.KeyAvailable) _lastKeyPress = Console.ReadKey().Key;
 
             }
         }
@@ -28,15 +28,30 @@ namespace CleanSnake {
         }
 
         public Input GetInput() {
-            switch (_lastKeyPress.Key) {
+            switch (_lastKeyPress) {
                 case ConsoleKey.Escape:
-                    return new Input(InputType.OPPERATION, _lastKeyPress.Key);
-                case ConsoleKey.Spacebar:
-                    return new Input(InputType.OPPERATION, _lastKeyPress.Key);
-                case 
+                    return new Input(InputType.OPPERATION, _lastKeyPress);
 
-            }
-        }
+                case ConsoleKey.Spacebar:
+                    return new Input(InputType.OPPERATION, _lastKeyPress);
+
+                case ConsoleKey.UpArrow:
+                    return new Input(InputType.MOVE, _lastKeyPress, new Vector2D(0, -1));
+
+                case ConsoleKey.DownArrow:
+                    return new Input(InputType.MOVE, _lastKeyPress, new Vector2D(0,  1));
+
+                case ConsoleKey.RightArrow:
+                    return new Input(InputType.MOVE, _lastKeyPress, new Vector2D(1,  0));
+
+                case ConsoleKey.LeftArrow:
+                    return new Input(InputType.MOVE, _lastKeyPress, new Vector2D(-1, 0));
+
+                default:
+                    return null;
+
+            } // END switch
+        } // END GetInput()
 
     }
 }
