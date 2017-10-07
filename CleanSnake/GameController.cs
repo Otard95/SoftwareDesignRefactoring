@@ -87,10 +87,10 @@ namespace CleanSnake {
 					// the snake ate the apple ChangePos on apple and update display
 					apple.ChangePos(display.Width, display.Height, snake.BodyToVector2D());
 					display.PaintApple(apple);
-					display.UpdateSnake(nHead, snake.parts.First());
+					display.UpdateSnake(nHead, snake.parts.Last());
 				} else {
 					// snake didn't eat the apple update the snake
-					display.UpdateSnake(nHead, snake.parts.First(), snake.parts.Last());
+					display.UpdateSnake(nHead, snake.parts.Last(), snake.parts.First());
 					snake.RemoveTail();
 				}
 
