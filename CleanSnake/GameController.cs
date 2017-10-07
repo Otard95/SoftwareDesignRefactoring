@@ -47,28 +47,7 @@ namespace CleanSnake {
 
 				// Get and handle input
 				Input _in = IH.Input;
-				if (_in != null) {
-					if (_in.Type == InputType.OPPERATION) {
-
-						if (_in.Key == ConsoleKey.Spacebar) { // pause the game
-							paused = true;
-						} else if (_in.Key == ConsoleKey.Escape) {
-							playing = false;
-							break;
-						}
-
-
-					} else { // currently only two InputTypes so this has to be InputType.MOVE
-
-						if (_in.Dir != snake.LastDir && // if same dir no need to update
-								_in.Dir != Vector2D.Multiply(snake.LastDir, -1) /* if exact oposite can't upate*/) {
-
-							snake.LastDir = _in.Dir;
-
-						}
-
-					} // END Direction handling
-				} // END If _in != null
+				HandleInput(_in);
 
 				// if we are paused stop here and redo while
 				if (paused) continue;
@@ -84,6 +63,30 @@ namespace CleanSnake {
 			Cleanup();
 
 		}
+
+		private void HandleInput(Input _in) {
+			if (_in != null) {
+				if (_in.Type == InputType.OPPERATION) {
+
+					if (_in.Key == ConsoleKey.Spacebar) { // pause the game
+						paused = !paused;
+					} else if (_in.Key == ConsoleKey.Escape) {
+						playing = false;
+					}
+
+
+				} else { // currently only two InputTypes so this has to be InputType.MOVE
+
+					if (_in.Dir != snake.LastDir && // if same dir no need to update
+							_in.Dir != Vector2D.Multiply(snake.LastDir, -1) /* if exact oposite can't upate*/) {
+
+						snake.LastDir = _in.Dir;
+
+					}
+
+				} // END Direction handling
+			} // END If _in != null
+		} // END HandleInput()
 
 		private void Cleanup () {
 
