@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace CleanSnake {
     class Apple : Vector2D {
 
-        public Apple (int x = 0, int y = 0): base(x,y) {
+        public Apple (List<Vector2D> mask, int x = 0, int y = 0): base(x,y) { // use initilize the apples pos somewhere not on the snake
 
         }
 
