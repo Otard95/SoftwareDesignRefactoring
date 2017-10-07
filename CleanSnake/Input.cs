@@ -8,10 +8,12 @@ namespace CleanSnake {
     class Input {
 
         public InputType Type;
+        public ConsoleKey Key;
         public Vector2D Dir;
 
-        public Input (InputType t, Vector2D v = null) {
+        public Input (InputType t, ConsoleKey key, Vector2D v = null) {
             Type = t;
+            Key = key;
             Dir = v;
         }
 

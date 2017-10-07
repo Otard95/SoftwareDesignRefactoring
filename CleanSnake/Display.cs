@@ -19,7 +19,7 @@ namespace CleanSnake {
 
         }
 
-        public void UpdateSnake (BodyPart nHead, BodyPart tail = null) {
+        public void UpdateSnake (BodyPart nHead,BodyPart oldHead, BodyPart tail = null) { // old head changes ico repaint it
 
         }
 
