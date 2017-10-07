@@ -61,7 +61,33 @@ namespace CleanSnake {
 				// Now that we got our input wich at this point should have been handled
 				// lets calculate the next frame and print it
 
-				
+				// get the new head
+				BodyPart nHead = snake.GetNewHead();
+
+				// ### check that is inside the bounds ow the window ###
+				if (display.IsOutside(nHead)) {
+					playing = false;
+				}
+				// now make sure that the player is not a bot, by checing if the snake is covering the entire window
+				if (snake.parts.Count + 1 == display.Width * display.Height) {
+					// player is a bot make sure to break here as apple wont find another spot to place itself so we'll get a while (true) scenario
+					playing = false;
+					break;
+				}
+
+				// ### now check for if snake has eaten the apple and update accordingly ###
+				if (nHead == apple) {
+					// the snake ate the apple ChangePos on apple and update display
+					apple.ChangePos(display.Width, display.Height, snake.BodyToVector2D());
+					display.PaintApple(apple);
+					display.UpdateSnake(nHead, snake.parts.First());
+				} else {
+					// snake didn't eat the apple update the snake
+					display.UpdateSnake(nHead, snake.parts.First(), snake.parts.Last());
+					snake.RemoveTail();
+				}
+				// now finally add the new head to the sake's List of BodyPart(s)
+				snake.UpdateHead(nHead);
 
 			} // END While
 
@@ -97,6 +123,8 @@ namespace CleanSnake {
 		} // END HandleInput()
 
 		private void Cleanup () {
+
+			Console.ResetColor();
 
 			// shutdown IH 
 			Console.WriteLine("Shuting down...");
