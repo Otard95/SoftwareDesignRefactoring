@@ -10,9 +10,8 @@ namespace CleanSnake {
         public int Height;
         public int Width;
 
-        public Display (int h, int w) {
-            Height = h;
-            Width = w;
+        public Display () {
+            Height = Console.WindowHeight; Width = Console.WindowWidth;
         }
 
         public void PaintSnake(List<BodyPart> snake) {
