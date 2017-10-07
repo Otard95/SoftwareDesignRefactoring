@@ -38,10 +38,24 @@ namespace CleanSnake {
             display = new Display();
             display.PaintSnake(snake.parts);
             display.PaintApple(apple);
-            
+
         }
 
+        public void Run () {
+            
 
+
+        }
+
+        private void Cleanup() {
+
+            // shutdown IH 
+            Console.WriteLine("Shuting down...");
+            IH.Shutdown();
+            IHThread.Join();
+            Console.Write("All done! Goodbye o/");
+
+        }
 
     }
 }
