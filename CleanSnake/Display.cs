@@ -35,9 +35,9 @@ namespace CleanSnake {
 
             Console.ForegroundColor = ConsoleColor.Yellow; 
             Console.SetCursorPosition(oldHead.X,oldHead.Y);
-            Console.Write(oldHead.Icon = BodyPartIcon.BODY);
+            Console.Write(oldHead.Icon);
             Console.SetCursorPosition(nHead.X, nHead.Y);
-            Console.Write(nHead.Icon = BodyPartIcon.HEAD);
+            Console.Write(nHead.Icon); 
 
         }
 
