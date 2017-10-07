@@ -17,6 +17,9 @@ namespace CleanSnake {
 
 		public GameController () {
 
+			// setup display so we can use its dimentions
+			display = new Display();
+
 			// Setup primitives
 			playing = true;
 			paused = false;
@@ -24,7 +27,7 @@ namespace CleanSnake {
 
 			// Setup the snake and apple
 			snake = new Snake(new Vector2D(1, 0));
-			apple = new Apple(snake.BodyToVector2D());
+			apple = new Apple(display.Width, display.Height, snake.BodyToVector2D());
 
 			// Initilize the input handler
 			IH = new InputHandler();
@@ -34,8 +37,7 @@ namespace CleanSnake {
 			while (!IHThread.IsAlive) ;
 			Thread.Sleep(1);
 
-			// now last but not least lets set up the display
-			display = new Display();
+			// now last but not least lets print out the snake and apple
 			display.PaintSnake(snake.parts);
 			display.PaintApple(apple);
 
@@ -50,7 +52,11 @@ namespace CleanSnake {
 				HandleInput(_in);
 
 				// if we are paused stop here and redo while
-				if (paused) continue;
+				if (paused) {
+					Thread.Sleep(1); /* Since there are two threads working on the same
+															bool make sure we are not overwhelming IHThread */
+					continue;
+				}
 
 				// Now that we got our input wich at this point should have been handled
 				// lets calculate the next frame and print it
@@ -64,7 +70,8 @@ namespace CleanSnake {
 
 		}
 
-		private void HandleInput(Input _in) {
+		private void HandleInput (Input _in) {
+
 			if (_in != null) {
 				if (_in.Type == InputType.OPPERATION) {
 
@@ -86,6 +93,7 @@ namespace CleanSnake {
 
 				} // END Direction handling
 			} // END If _in != null
+
 		} // END HandleInput()
 
 		private void Cleanup () {
