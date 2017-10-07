@@ -54,9 +54,30 @@ namespace CleanSnake {
 		 * ## Operators
 		 */
 
-		public static bool operator == (Vector2D v1, Vector2D v2) => v1.Equals(v2);
+		public static bool operator == (Vector2D v1, Vector2D v2) {
 
-		public static bool operator != (Vector2D v1, Vector2D v2) => !v1.Equals(v2);
+			// Chech if comparing with null
+			bool v1Null;
+			try {
+				v1.Equals(v1);
+				v1Null = false;
+			} catch (NullReferenceException e) {
+				v1Null = true;
+			}
+
+			bool v2Null;
+			try {
+				v2.Equals(v2);
+				v2Null = false;
+			} catch (NullReferenceException e) {
+				v2Null = true;
+			}
+			if (v1Null && v2Null) return true;
+			if (v1Null || v2Null) return false;
+			return v1.Equals(v2);
+		}
+
+		public static bool operator != (Vector2D v1, Vector2D v2) => !(v1 == v2);
 
 		public static Vector2D operator + (Vector2D v1, Vector2D v2) => Vector2D.Add(v1, v2);
 

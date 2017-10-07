@@ -8,7 +8,8 @@ namespace CleanSnake {
 
 	public enum InputType {
 		OPPERATION = 0,
-		MOVE
+		MOVE,
+		NONE
 	}
 
 	public enum BodyPartIcon {

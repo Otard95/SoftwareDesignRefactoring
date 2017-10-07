@@ -6,71 +6,77 @@ using System.Threading.Tasks;
 using System.Threading;
 
 namespace CleanSnake {
-    class InputHandler {
+	class InputHandler {
 
-        /*
-         * ## private fields
-         */
+		/*
+		 * ## private fields
+		 */
 
-        private volatile ConsoleKey _lastKeyPress;
-        private volatile bool _running;
+		private volatile ConsoleKey _lastKeyPress;
+		private bool _lastWasOpperation = false;
+		private volatile bool _running;
 
-        /*
-         * ## Proporty
-         */
-        public Input Input {
-            get {
-                switch (_lastKeyPress) {
-                    case ConsoleKey.Escape:
-                        return new Input(InputType.OPPERATION, _lastKeyPress);
+		/*
+		 * ## Proporty
+		 */
+		public Input Input {
+			get {
+				switch (_lastKeyPress) {
+					case ConsoleKey.Escape:
+						if (!_lastWasOpperation) { _lastWasOpperation = true; return new Input(InputType.OPPERATION, _lastKeyPress); }
+						_lastKeyPress = ConsoleKey.F19;
+						return new Input(InputType.NONE, _lastKeyPress);
 
-                    case ConsoleKey.Spacebar:
-                        return new Input(InputType.OPPERATION, _lastKeyPress);
+					case ConsoleKey.Spacebar:
+						if (!_lastWasOpperation) { _lastWasOpperation = true; return new Input(InputType.OPPERATION, _lastKeyPress); }
+						_lastKeyPress = ConsoleKey.F19;
+						return new Input(InputType.NONE, _lastKeyPress);
 
-                    case ConsoleKey.UpArrow:
-                        return new Input(InputType.MOVE, _lastKeyPress, new Vector2D(0, -1));
+					case ConsoleKey.UpArrow:
+						return new Input(InputType.MOVE, _lastKeyPress, new Vector2D(0, -1));
 
-                    case ConsoleKey.DownArrow:
-                        return new Input(InputType.MOVE, _lastKeyPress, new Vector2D(0, 1));
+					case ConsoleKey.DownArrow:
+						return new Input(InputType.MOVE, _lastKeyPress, new Vector2D(0, 1));
 
-                    case ConsoleKey.RightArrow:
-                        return new Input(InputType.MOVE, _lastKeyPress, new Vector2D(1, 0));
+					case ConsoleKey.RightArrow:
+						return new Input(InputType.MOVE, _lastKeyPress, new Vector2D(1, 0));
 
-                    case ConsoleKey.LeftArrow:
-                        return new Input(InputType.MOVE, _lastKeyPress, new Vector2D(-1, 0));
+					case ConsoleKey.LeftArrow:
+						return new Input(InputType.MOVE, _lastKeyPress, new Vector2D(-1, 0));
 
-                    default:
-                        return null;
+					default:
+						_lastWasOpperation = false;
+						return null;
 
-                } // END switch
-            } // END get;
-        }
+				} // END switch
+			} // END get;
+		}
 
-        /*
-         * ## Constructor
-         */
+		/*
+		 * ## Constructor
+		 */
 
-        public InputHandler () {
-            _running = true;
-        }
+		public InputHandler () {
+			_running = true;
+		}
 
-        /*
-         * ## Run methud for the Thread
-         */
+		/*
+		 * ## Run methud for the Thread
+		 */
 
-        public void Run () {
-            while (_running) {
+		public void Run () {
+			while (_running) {
 
-                if (Console.KeyAvailable) _lastKeyPress = Console.ReadKey().Key;
+				if (Console.KeyAvailable) _lastKeyPress = Console.ReadKey().Key;
 
-            }
-        }
+			}
+		}
 
-        /*
-         * ## Shutdown methud for graceful exit
-         */
+		/*
+		 * ## Shutdown methud for graceful exit
+		 */
 
-        public void Shutdown () => _running = false;
+		public void Shutdown () => _running = false;
 
-    }
+	}
 }

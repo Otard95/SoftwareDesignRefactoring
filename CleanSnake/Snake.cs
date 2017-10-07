@@ -13,6 +13,12 @@ namespace CleanSnake {
 		public Snake (Vector2D startDir) { // Initial movement dir of snake
 			// Create snake
       parts = new List<BodyPart>();
+			for (int i = 0; i < 4; i++) {
+				parts.Add(new BodyPart(10, 6 + i));
+			}
+			parts.Add(new BodyPart(BodyPartIcon.HEAD, 10, 11));
+
+			LastDir = new Vector2D(0, 1);
 		}
 
 		public BodyPart GetNewHead () {
@@ -40,7 +46,7 @@ namespace CleanSnake {
 
     public void RemoveTail()
 	  {
-	    parts.Remove(parts[0]);
+	    parts.Remove(parts.First());
 	  }
 
 

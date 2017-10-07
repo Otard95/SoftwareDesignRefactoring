@@ -71,6 +71,7 @@ namespace CleanSnake {
 				// Check if new head is outside window
 				if (display.IsOutside(nHead)) {
 					playing = false;
+					break;
 				}
 				// now make sure that the player is not a bot, by checing if the snake is covering the entire window
 				if (snake.parts.Count + 1 == display.Width * display.Height) {
@@ -97,6 +98,8 @@ namespace CleanSnake {
 				// now finally add the new head to the sake's List of BodyPart(s)
 				snake.UpdateHead(nHead);
 
+				Thread.Sleep(1000 / ticksPerSecond);
+
 			} // END While
 
 			// Do ceanup before exit
@@ -116,7 +119,7 @@ namespace CleanSnake {
 					}
 
 
-				} else { // currently only two InputTypes so this has to be InputType.MOVE
+				} else if (_in.Type == InputType.MOVE) { // currently only two InputTypes so this has to be InputType.MOVE
 
 					if (_in.Dir != snake.LastDir && // if same dir no need to update
 							_in.Dir != Vector2D.Multiply(snake.LastDir, -1) /* if exact oposite can't upate*/) {
