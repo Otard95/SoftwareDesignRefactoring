@@ -64,7 +64,11 @@ namespace CleanSnake {
 				// get the new head
 				BodyPart nHead = snake.GetNewHead();
 
-				// ### check that is inside the bounds ow the window ###
+				/* 
+				 * ### Check for end of game events
+				 */
+
+				// Check if new head is outside window
 				if (display.IsOutside(nHead)) {
 					playing = false;
 				}
@@ -75,7 +79,10 @@ namespace CleanSnake {
 					break;
 				}
 
-				// ### now check for if snake has eaten the apple and update accordingly ###
+				/* 
+				 * ### Now check for if snake has eaten the apple and update accordingly 
+				 */
+
 				if (nHead == apple) {
 					// the snake ate the apple ChangePos on apple and update display
 					apple.ChangePos(display.Width, display.Height, snake.BodyToVector2D());
@@ -86,6 +93,7 @@ namespace CleanSnake {
 					display.UpdateSnake(nHead, snake.parts.First(), snake.parts.Last());
 					snake.RemoveTail();
 				}
+
 				// now finally add the new head to the sake's List of BodyPart(s)
 				snake.UpdateHead(nHead);
 
