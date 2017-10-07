@@ -73,6 +73,12 @@ namespace CleanSnake {
 					playing = false;
 					break;
 				}
+				foreach (BodyPart bp in snake.parts) {
+					if (nHead == bp) {
+						// Death by accidental self-cannibalism
+						playing = false;
+					}
+				}
 				// now make sure that the player is not a bot, by checing if the snake is covering the entire window
 				if (snake.parts.Count + 1 == display.Width * display.Height) {
 					// player is a bot make sure to break here as apple wont find another spot to place itself so we'll get a while (true) scenario
