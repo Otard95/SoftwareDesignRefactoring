@@ -7,12 +7,11 @@ using System.Threading.Tasks;
 namespace CleanSnake {
     class Display {
 
-        public int Height;
-        public int Width;
+        public int Height { get; set;}
+        public int Width { get; set; }
 
-        public Display (int h, int w) {
-            Height = h;
-            Width = w;
+        public Display () {
+            Height = Console.WindowHeight; Width = Console.WindowWidth;
         }
 
         public void PaintSnake(List<BodyPart> snake) {
@@ -27,9 +26,7 @@ namespace CleanSnake {
 
         }
 
-        public bool IsOutside(Vector2D v) {
-
-        }
+        public bool IsOutside (Vector2D v) => (v.X < 0 || v.X > Width || v.Y < 0 || v.Y > Height);
 
     }
 }
