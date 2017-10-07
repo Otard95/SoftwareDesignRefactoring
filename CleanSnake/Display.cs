@@ -28,8 +28,8 @@ namespace CleanSnake {
 
         public bool IsOutside(Vector2D v)
         {
-            //I understand that this method is to find out the fact if the snake is to big for the Terminal Window. -kbsa00 
-            if (v.X == Width && v.Y == Height)
+         
+            if ((v.X < 0 || v.X > Width) && (v.Y < 0 || v.Y > Height))
             {
                 return true; 
             }
