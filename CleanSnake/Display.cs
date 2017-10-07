@@ -21,12 +21,23 @@ namespace CleanSnake {
                 Console.ForegroundColor = ConsoleColor.Yellow; 
                 Console.SetCursorPosition(bp.X, bp.Y);
                 Console.Write(bp.Icon);
-
             }
        
         }
 
         public void UpdateSnake (BodyPart nHead,BodyPart oldHead, BodyPart tail = null) { // old head changes ico repaint it
+
+            if (tail != null)
+            {
+                Console.SetCursorPosition(tail.X, tail.Y);
+                Console.Write(" ");
+            }
+
+            Console.ForegroundColor = ConsoleColor.Yellow; 
+            Console.SetCursorPosition(oldHead.X,oldHead.Y);
+            Console.Write(oldHead.Icon);
+            Console.SetCursorPosition(nHead.X, nHead.Y);
+            Console.Write(nHead.Icon); 
 
         }
 
@@ -34,8 +45,7 @@ namespace CleanSnake {
         {
             Console.ForegroundColor = ConsoleColor.Green; 
             Console.SetCursorPosition(apple.X, apple.Y);
-            Console.Write("$");
-
+            Console.Write(apple.Icon);
         }
 
         public bool IsOutside (Vector2D v) => (v.X < 0 || v.X > Width || v.Y < 0 || v.Y > Height);

@@ -19,8 +19,10 @@ namespace CleanSnake {
 
 			// returns a new BodyPart with icon head using the current dir to move it correctly
 			// make sure to change the icon of the last head to the body icon
-		  parts[parts.Count - 2].Icon = BodyPartIcon.BODY;
-      return new BodyPart(BodyPartIcon.HEAD);
+		  parts.Last().Icon = BodyPartIcon.BODY;
+			BodyPart nHead = new BodyPart(parts.Last(), BodyPartIcon.HEAD);
+			nHead.Add(LastDir);
+			return nHead;
 		}
 
 		public void UpdateHead (BodyPart newHead) { // add the new head to the parts List
