@@ -5,27 +5,31 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace CleanSnake {
-    class Snake {
+	class Snake {
 
-        public List<BodyPart> parts;
-        public Vector2D LastDir; // movement direction of snake
+		public List<BodyPart> parts;
+		public Vector2D LastDir; // movement direction of snake
 
-        public Snake (Vector2D startDir) { // Initial movement dir of snake
+		public Snake (Vector2D startDir) { // Initial movement dir of snake
 
-            // Create snake
+			// Create snake
 
-        }
+		}
 
-        public BodyPart GetNewHead () {
+		public BodyPart GetNewHead () {
 
-            // returns a new BodyPart with icon head using the current dir to move it correctly
-            // make sure to change the icon of the last head to the body icon
+			// returns a new BodyPart with icon head using the current dir to move it correctly
+			// make sure to change the icon of the last head to the body icon
 
-        }
+		}
 
-        public List<Vector2D> BodyToVector2D () { // makes new list ov Vector2D and populates it by converting each BodyPart to a vector
+		public void UpdateHead (BodyPart newHead) { // add the new head to the parts List
 
-        }
+		}
 
-    }
+		public List<Vector2D> BodyToVector2D () { // makes new list ov Vector2D and populates it by converting each BodyPart to a vector
+
+		}
+
+	}
 }
