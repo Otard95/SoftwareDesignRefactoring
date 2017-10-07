@@ -45,7 +45,7 @@ namespace CleanSnake {
         {
             Console.ForegroundColor = ConsoleColor.Green; 
             Console.SetCursorPosition(apple.X, apple.Y);
-            
+            Console.Write(apple.Icon);
         }
 
         public bool IsOutside (Vector2D v) => (v.X < 0 || v.X > Width || v.Y < 0 || v.Y > Height);
