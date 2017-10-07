@@ -16,6 +16,16 @@ namespace CleanSnake {
 
         public void PaintSnake(List<BodyPart> snake) {
 
+            Console.Write(BodyPartIcon.HEAD);
+
+            for (int i = 1; i < snake.Count; i++)
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow; 
+                Console.SetCursorPosition(snake[i].X, snake[i].Y);
+                Console.Write(BodyPartIcon.BODY);
+
+            }
+       
         }
 
         public void UpdateSnake (BodyPart nHead,BodyPart oldHead, BodyPart tail = null) { // old head changes ico repaint it
