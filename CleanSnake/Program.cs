@@ -6,21 +6,22 @@ using System.Threading.Tasks;
 
 namespace CleanSnake {
 
-    public enum InputType {
-        OPPERATION = 0,
-        MOVE
-    }
+	public enum InputType {
+		OPPERATION = 0,
+		MOVE
+	}
 
-    public enum BodyPartIcon {
-        HEAD = '@',
-        BODY = '0'
-    }
+	public enum BodyPartIcon {
+		HEAD = '@',
+		BODY = '0'
+	}
 
-    class Program {
-        static void Main (string[] args) {
+	class Program {
+		static void Main (string[] args) {
 
-      var gc = new GameController();
+			var gc = new GameController();
+			gc.Run();
 
-        }
-    }
+		}
+	}
 }
