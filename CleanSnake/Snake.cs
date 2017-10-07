@@ -23,5 +23,9 @@ namespace CleanSnake {
 
         }
 
+        public List<Vector2D> BodyToVector2D () { // makes new list ov Vector2D and populates it by converting each BodyPart to a vector
+
+        }
+
     }
 }
