@@ -16,13 +16,13 @@ namespace CleanSnake {
 
         public void PaintSnake(List<BodyPart> snake) {
 
-            Console.Write(BodyPartIcon.HEAD);
+            // Console.Write(BodyPartIcon.HEAD); | cursor position not set so this might end up anywhere.
 
-            for (int i = 1; i < snake.Count; i++)
-            {
+            foreach (var bp in snake) // for ==> foreach | just preference
+						{
                 Console.ForegroundColor = ConsoleColor.Yellow; 
-                Console.SetCursorPosition(snake[i].X, snake[i].Y);
-                Console.Write(BodyPartIcon.BODY);
+                Console.SetCursorPosition(bp.X, bp.Y);
+                Console.Write(bp.Icon); // printing the icon specified by BodyPart.Icon
 
             }
        
