@@ -48,8 +48,6 @@ namespace CleanSnake {
 
 		public bool Equals (Vector2D v1) => X == v1.X && Y == v1.Y;
 
-		public bool Equals (Vector2D v1, Vector2D v2) => v1.Equals(v2);
-
 		/*
 		 * ## Operators
 		 */
