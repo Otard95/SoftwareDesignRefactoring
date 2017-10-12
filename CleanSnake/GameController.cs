@@ -92,7 +92,7 @@ namespace CleanSnake {
 
 				if (nHead == apple) {
 					// the snake ate the apple ChangePos on apple and update display
-					apple.ChangePos(display.Width, display.Height, (Vector2D) nHead, snake.BodyToVector2D());
+					apple.ChangePos(display.Width, display.Height, snake.BodyToVector2D(), (Vector2D) nHead);
 					display.PaintApple(apple);
 					display.UpdateSnake(nHead, snake.parts.Last());
 				} else {

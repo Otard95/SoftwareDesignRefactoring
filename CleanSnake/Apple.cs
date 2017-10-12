@@ -16,7 +16,7 @@ namespace CleanSnake {
 			ChangePos(xMax, yMax, mask);
 		}
 
-		public void ChangePos (int xMax, int yMax, Vector2D nHead, List<Vector2D> mask = null) {
+		public void ChangePos (int xMax, int yMax, List<Vector2D> mask = null, Vector2D nHead = null) {
 			bool okPos = false;
 			while (!okPos) {
 				X = rnd.Next(0, xMax);
@@ -27,10 +27,10 @@ namespace CleanSnake {
 			}
 		}
 
-		private bool checkIsOutside (List<Vector2D> mask, Vector2D nHead) {
+		private bool checkIsOutside (List<Vector2D> mask, Vector2D nHead = null) {
 			bool isOutside = true;
 			foreach (Vector2D v in mask) {
-				if (this == v || nHead == v) {
+				if (this == v || nHead == this) {
 					isOutside = false;
 				  break;
 				}
