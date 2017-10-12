@@ -8,23 +8,20 @@ namespace CleanSnake {
 	class Apple : Vector2D {
 
 		public char Icon { get; set; }
+		private Random rnd;
 
 		public Apple (int xMax, int yMax, List<Vector2D> mask, int x = 0, int y = 0) : base(x, y) { // initilize the apples pos somewhere not on the snake
 			ChangePos(xMax, yMax, mask);
 			Icon = '$';
+			rnd = new Random();
 		}
 
-		public void ChangePos (int xMax, int yMax, List<Vector2D> mask = null) {
-			Random rnd = new Random();
+		public void ChangePos (int xMax, int yMax, List<Vector2D> mask = null) { // !!#!#!# MUST FIX !!#!#!#!#!#!#
 			bool okPos = false;
-			int x;
-			int y;
 			while (!okPos) {
-				x = rnd.Next(0, xMax);
-				y = rnd.Next(0, yMax);
+				X = rnd.Next(0, xMax);
+				Y = rnd.Next(0, yMax);
 				if (checkIsOutside(mask)) {
-					X = x;
-					Y = y;
 					okPos = true;
 				}
 			}
