@@ -30,7 +30,7 @@ namespace CleanSnake {
 			}
 		}
 
-		public bool checkIsOutside (List<Vector2D> mask) {
+		private bool checkIsOutside (List<Vector2D> mask) {
 			bool isOutside = true;
 			foreach (Vector2D v in mask) {
 				if (this == v) {
